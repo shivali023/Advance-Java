@@ -1,0 +1,28 @@
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/display")
+public class DisplayVariablesServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve variables from URL parameters
+        String var1 = request.getParameter("var1");
+        String var2 = request.getParameter("var2");
+
+        // Set content type
+        response.setContentType("text/html");
+
+        // Print response
+        response.getWriter().println("<html><body>");
+        response.getWriter().println("<h1>Variables from URL</h1>");
+        response.getWriter().println("<p>Variable 1: " + (var1 != null ? var1 : "Shivali") + "</p>");
+        response.getWriter().println("<p>Variable 2: " + (var2 != null ? var2 : "Sharma") + "</p>");
+        response.getWriter().println("</body></html>");
+    }
+}
