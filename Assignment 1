@@ -1,46 +1,41 @@
+package com.learn;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/display")
-public class DisplayVariablesServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+/**
+ * Servlet implementation class WelcomeServlet
+ */
+@WebServlet("/annotation")
+public class WelcomeServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+//	@Override
+//	public void init() throws ServletException{
+//		System.out.println("This is init method");
+//	}
+//   @Overrride
+//   public void init (ServletConfig config) throws ServletException{
+//	  System.out.println("Hello!");
+//	  
+//   }
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Request
+		String var1=request.getParameter("var1");
+		String var2=request.getParameter("var2");
+		
+		response.setContentType("text/html");
+		//Response
+		response.getWriter().append("Welcome "+" " + var1+ " "+ var2).close();
+		}
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve variables from URL parameters
-        String var1 = request.getParameter("var1");
-        String var2 = request.getParameter("var2");
-
-        // Set content type
-        response.setContentType("text/html");
-
-        // Print response
-        response.getWriter().println("<html><body>");
-        response.getWriter().println("<h1>Variables from URL</h1>");
-        response.getWriter().println("<p>Variable 1: " + (var1 != null ? var1 : "Shivali") + "</p>");
-        response.getWriter().println("<p>Variable 2: " + (var2 != null ? var2 : "Sharma") + "</p>");
-        response.getWriter().println("</body></html>");
-    }
 }
-
-//xml file
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
-    <servlet>
-        <servlet-name>MyServlet</servlet-name>
-        <servlet-class>com.example.MyServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/displayMyServlet</url-pattern>
-    </servlet-mapping>
-</web-app>
-
